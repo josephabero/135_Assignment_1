@@ -1,0 +1,19 @@
+135 Assignment 1: Rock, Paper, Scissors Implementation
+
+By: Joseph Abero, Nicholas Derry, Nathan Luc, Jesse Pham
+
+
+Code is written in C++ and project can be built and run in the IDE of your choice. 
+These are steps to run in command line.
+
+TO RUN
+--------
+To compile in command line, enter the src directory and run commands:
+
+> make
+> make run
+> make clean
+
+make: 			builds main.cpp
+make run: 		runs project (observe console output)
+make clean: 	removes main.exe, must run make again to run project
