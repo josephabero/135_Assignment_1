@@ -1,4 +1,6 @@
-#include <iostream>  
+#include <iostream>
+#include "player.cpp"
+#include "user.cpp"
   
 using namespace std; 
 
