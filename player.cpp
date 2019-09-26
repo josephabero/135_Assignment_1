@@ -1,31 +1,19 @@
-// #include <iostream>
-// #include "option.cpp"
-// using namespace std;
+#include <iostream>
+// #include "option.hpp"
+#include "player.hpp"
+using namespace std;
 
-// int Player::getScore()	const 
-// {
-// 	return score;
-// }
-
-// void Player::setOption(Option option)
-// {
-// 	option = option;
-// }
-
-#include "option.cpp"
-
-class Player
+int Player::getScore()   const 
 {
-public:
-	Player(Option option, int score) 
-		: option(option), score(score)
-	{}
-	
-	int getScore()	const 			{ return score; }
-	void setOption(Option option) 	{ option = option; }
-	Option getOption()				{ return option; }
+ return score;
+}
 
-private:
-	Option option;
-	int score;
-};
+void Player::setOption(int option)
+{
+ option = option;
+}
+
+int Player::getOption()
+{
+    return option;
+}

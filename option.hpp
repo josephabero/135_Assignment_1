@@ -1,3 +1,6 @@
+#ifndef	OPTION_HPP
+#define	OPTION_HPP
+
 #include <iostream>
 using namespace std;
 
@@ -17,3 +20,5 @@ inline ostream& operator << (ostream& ost, const Option option)
 	}
 	return ost;
 }
+
+#endif
