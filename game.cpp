@@ -11,7 +11,7 @@ Game::Game()
 
 void Game::runGame()
 {
-    // Step 1: Start Game
+    // Step 1: Start Game & Request Username
     gameStart();
 
     string nameInput;
@@ -29,7 +29,6 @@ void Game::runGame()
     // Step 4: Choose Computer Option
     // Step 5: Evaluate the Winner
     // Step 6: Show Score
-
     // -- Repeat Steps 3-6 until Score threshold is met --
     int roundCount = 0;
     do
@@ -129,7 +128,6 @@ void Game::displayOptions()
 
 Winner Game::evaluateUserWin()
 {
-    // 0 = tie, 1 = user win, 2 = comp win
     Winner winner;
     Option compOption = compPlayer->getOption();
 

@@ -10,9 +10,6 @@ public:
 	Player(std::string username, Option option, int score) 
         : username(username), option(option), score(score)
     {};
-    // Player(int option, int score) 
-    //     : option(option), score(score)
-    // {};
     
     void setUsername(std::string username);
     std::string getUsername() const;
