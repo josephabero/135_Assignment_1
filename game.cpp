@@ -31,9 +31,12 @@ void Game::runGame()
     // Step 6: Show Score
 
     // -- Repeat Steps 3-6 until Score threshold is met --
+    int roundCount = 0;
     do
     {
-        cout << "----------------------------------" << endl;
+        cout << "----------------------------------" << endl
+            << "ROUND: " << roundCount + 1 << endl
+            << "----------------------------------" << endl;
         displayOptions();
     
         compPlayer->generateOption();
@@ -57,7 +60,8 @@ void Game::runGame()
         }
     
         displayScore();
-    }while((compPlayer->getScore() < 10) && (humanPlayer->getScore() < 10));
+        roundCount++;
+    }while(roundCount < 20);
 
     // Step 7: End Game
     gameEnd();
