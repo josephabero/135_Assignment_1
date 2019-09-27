@@ -1,8 +1,10 @@
 #ifndef	GAME_HPP
 #define	GAME_HPP
 
+
 #include "user.hpp"
-#include "computer.cpp"
+#include "computer.hpp"
+#include "winner.hpp"
 
 class Game
 {
@@ -14,12 +16,12 @@ public:
 	void gameEnd();
 	void displayOptions();
 	void runGame();
-	int evaluateUserWin();
+	Winner evaluateUserWin();
 
 private:
 	bool activeGame;
 	Player *humanPlayer;
-	Computer *compPlayer;
+	Player *compPlayer;
 };
 
 #endif

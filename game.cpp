@@ -4,7 +4,7 @@ using namespace std;
 
 Game::Game()
 {
-    humanPlayer = new Player("Player1", Option::ROCK, 0);
+    humanPlayer = new User("Player1", Option::ROCK, 0);
     compPlayer = new Computer();
     activeGame = false;
 }
@@ -59,11 +59,8 @@ void Game::runGame()
 
         displayScore();
         round_count++;
-        if(round_count == 20)
-        {
-          break;
-        }
-    }while((compPlayer->getScore() < 20) && (humanPlayer->getScore() < 20));
+
+    }while(round_count < 20);
 
     // Step 7: End Game
     gameEnd();
