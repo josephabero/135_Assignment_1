@@ -11,6 +11,8 @@ public:
     {};
     
     int getScore()  const;
+    void setScore(int score);
+    void incrementScore();
     void setOption(int option);
     int getOption();
 

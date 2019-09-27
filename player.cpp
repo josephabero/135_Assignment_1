@@ -5,12 +5,22 @@ using namespace std;
 
 int Player::getScore()   const 
 {
- return score;
+ 	return score;
+}
+
+void Player::setScore(int score)
+{
+	this->score = score;
+}
+
+void Player::incrementScore()
+{
+	score++;
 }
 
 void Player::setOption(int option)
 {
- option = option;
+ 	this->option = option;
 }
 
 int Player::getOption()

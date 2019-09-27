@@ -2,6 +2,8 @@
 #define	GAME_H
 
 #include <iostream>
+#include "player.hpp"
+using namespace std;
 
 class User : public Player
 {

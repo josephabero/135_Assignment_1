@@ -1,21 +1,25 @@
 #ifndef	GAME_HPP
 #define	GAME_HPP
 
+#include "user.hpp"
+#include "computer.cpp"
+
 class Game
 {
 public:
-	Game(bool activeGame, User humanPlayer, Computer compPlayer) 
-		: activeGame(activeGame), humanPlayer(humanPlayer), compPlayer(compPlayer)
-	{}
+	Game();
 
 	void displayScore();
 	void gameStart();
 	void gameEnd();
 	void displayOptions();
+	void runGame();
+	int evaluateUserWin();
+
 private:
 	bool activeGame;
-	User humanPlayer;
-	Computer compPlayer;
+	User *humanPlayer;
+	Computer *compPlayer;
 };
 
 #endif
