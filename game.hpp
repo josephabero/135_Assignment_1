@@ -3,6 +3,7 @@
 
 #include "user.hpp"
 #include "computer.cpp"
+#include "winner.hpp"
 
 class Game
 {
@@ -14,7 +15,7 @@ public:
 	void gameEnd();
 	void displayOptions();
 	void runGame();
-	int evaluateUserWin();
+	Winner evaluateUserWin();
 
 private:
 	bool activeGame;
