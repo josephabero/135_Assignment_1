@@ -4,7 +4,7 @@ using namespace std;
 
 Game::Game()
 { 
-    humanPlayer = new Player("Player1", Option::ROCK, 0);
+    humanPlayer = new User("Player1", Option::ROCK, 0);
     compPlayer = new Computer();
     activeGame = false; 
 }

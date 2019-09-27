@@ -27,13 +27,3 @@ void Player::incrementScore()
 {
 	score++;
 }
-
-void Player::setOption(Option option)
-{
- 	this->option = option;
-}
-
-Option Player::getOption()
-{
-    return option;
-}
