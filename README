@@ -11,9 +11,16 @@ TO RUN
 To compile in command line, enter the src directory and run commands:
 
 > make
-> make run
-> make clean
+> ./a.out
 
+
+UPDATED
+-------------------------------
 make: 			builds main.cpp
-make run: 		runs project (observe console output)
+./a.out:		runs built project
+
+
+OLD
+-------------------------------
+make run: 		runs main.exe (observe console output)
 make clean: 	removes main.exe, must run make again to run project
