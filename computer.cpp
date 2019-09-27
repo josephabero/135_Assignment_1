@@ -5,7 +5,7 @@ using namespace std;
 class Computer: public Player
 {
 public:
-	Computer() : Player(0, 0) 
+	Computer() : Player("Computer", 0, 0) 
 	{}
 	
 	void generateOption()
