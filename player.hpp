@@ -1,13 +1,13 @@
 #ifndef	PLAYER_HPP
 #define	PLAYER_HPP
 
-// #include "option.hpp"
+#include "option.hpp"
 #include <string>
 
 class Player
 {
 public:
-	Player(std::string username, int option, int score) 
+	Player(std::string username, Option option, int score) 
         : username(username), option(option), score(score)
     {};
     // Player(int option, int score) 
@@ -16,8 +16,8 @@ public:
     
     void setUsername(std::string username);
     std::string getUsername() const;
-    void setOption(int option);
-    int getOption();
+    void setOption(Option option);
+    Option getOption();
     int getScore()  const;
     void setScore(int score);
     void incrementScore();
@@ -25,7 +25,7 @@ public:
 
 private:
 	std::string username;
-    int option;
+    Option option;
     int score;
 };
 

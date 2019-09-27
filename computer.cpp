@@ -1,16 +1,17 @@
 #include "player.hpp"
 #include <stdlib.h>
+#include "option.hpp"
 using namespace std;
 
 class Computer: public Player
 {
 public:
-	Computer() : Player("Computer", 0, 0) 
+	Computer() : Player("Computer", Option::ROCK, 0) 
 	{}
 	
 	void generateOption()
 	{
 		// generate random option
-		Player::setOption((rand() % 3) + 1);
+		Player::setOption(static_cast<Option>((rand() % 3)));
 	}
 };

@@ -4,7 +4,7 @@ using namespace std;
 
 Game::Game()
 { 
-    humanPlayer = new Player("Player1", 0, 0);
+    humanPlayer = new Player("Player1", Option::ROCK, 0);
     compPlayer = new Computer();
     activeGame = false; 
 }
@@ -106,13 +106,14 @@ void Game::displayOptions()
                 << "3. Scissors"    << endl
                 << "Choice (1-3): ";
             cin >> userInput;
+            userInput--;
             cout << endl << endl;
     
-            switch(userInput)
+            switch(static_cast<Option>(userInput))
             {
-                case 1: cout << "You chose Rock!" << endl; break;
-                case 2: cout << "You chose Paper!" << endl; break;
-                case 3: cout << "You chose Scissors!" << endl; break;
+                case Option::ROCK:      cout << "You chose " << Option::ROCK     << endl; break;
+                case Option::PAPER:     cout << "You chose " << Option::PAPER    << endl; break;
+                case Option::SCISSORS:  cout << "You chose " << Option::SCISSORS << endl; break;
                 default: 
                     cout << "Invalid Input! Try Again!" << endl;
                     validInput = false; 
@@ -120,7 +121,7 @@ void Game::displayOptions()
             }
         } while(!validInput);
     
-        humanPlayer->setOption(userInput);
+        humanPlayer->setOption(static_cast<Option>(userInput));
     }
 }
 
@@ -128,26 +129,26 @@ int Game::evaluateUserWin()
 {
     // 0 = tie, 1 = user win, 2 = comp win
     int winner = 0;
-    int compOption = compPlayer->getOption();
+    Option compOption = compPlayer->getOption();
 
     if(activeGame)
     {
         switch(humanPlayer->getOption())
         {
-            case 1: 
-                if(compOption == 1)      winner = 0; 
-                else if(compOption == 2) winner = 2;
-                else if(compOption == 3) winner = 1;
+            case (Option::ROCK): 
+                if     (compOption == Option::ROCK)     winner = 0; 
+                else if(compOption == Option::PAPER)    winner = 2;
+                else if(compOption == Option::SCISSORS) winner = 1;
                 break;
-            case 2: 
-                if(compOption == 1)      winner = 1;            
-                else if(compOption == 2) winner = 0;
-                else if(compOption == 3) winner = 2;
+            case (Option::PAPER): 
+                if     (compOption == Option::ROCK)     winner = 1;            
+                else if(compOption == Option::PAPER)    winner = 0;
+                else if(compOption == Option::SCISSORS) winner = 2;
                 break;
-            case 3: 
-                if(compOption == 1)      winner = 2;
-                else if(compOption == 2) winner = 1;
-                else if(compOption == 3) winner = 0;
+            case (Option::SCISSORS): 
+                if     (compOption == Option::ROCK)     winner = 2;
+                else if(compOption == Option::PAPER)    winner = 1;
+                else if(compOption == Option::SCISSORS) winner = 0;
                 break;
         }
     }
