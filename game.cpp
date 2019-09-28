@@ -35,7 +35,7 @@ void Game::runGame(Player & player1, Player & player2)
 
         cout << "Computer chose " << compPlayer.getOption() << endl;
 
-        int winner = evaluateUserWin();
+        int winner = evaluateUserWin(Player & player1, Player & player2);
         switch(winner)
         {
             case 0:
@@ -67,8 +67,8 @@ void Game::displayScore()
         cout << endl
             << "SCORE"                                  << endl
             << "----------------------"                 << endl
-            << humanPlayer->getUsername() << ": " << humanPlayer->getScore()  << endl
-            << "Computer: " << compPlayer->getScore()   << endl
+            << humanPlayer->getUsername() << ": " << humanPlayer.getScore()  << endl
+            << "Computer: " << compPlayer.getScore()   << endl
             << "----------------------"                 << endl;
     }
 }
@@ -122,7 +122,7 @@ void Game::displayOptions()
     }
 }
 
-int Game::evaluateUserWin()
+int Game::evaluateUserWin(Player & player1, Player & player2)
 {
     // 0 = tie, 1 = user win, 2 = comp win
     int winner = 0;
@@ -134,7 +134,7 @@ int Game::evaluateUserWin()
         {
           winner  = 0;
         }
-        switch(humanPlayer->getOption())
+        switch(humanPlayer.getOption())
         {
             case (Option::ROCK):
                 if(compOption == Option::PAPER)         winner = 2;

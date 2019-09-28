@@ -29,7 +29,7 @@ void User::incrementScore()
 }
 void User::generateOption()
 {
-  break;
+    int i = 0;
 }
 
 void User::setOption(Option option)

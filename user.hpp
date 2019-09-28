@@ -14,6 +14,7 @@ public:
     std::string getUsername() const;
     void setOption(Option option);
     Option getOption();
+		void generateOption();
     int getScore()  const;
     void setScore(int score);
     void incrementScore();
