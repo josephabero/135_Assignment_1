@@ -27,8 +27,23 @@ public:
 	{
 	    return option;
 	}
+	int getScore()   const
+	{
+	 	return score;
+	}
+
+	void setScore(int score)
+	{
+		this->score = score;
+	}
+
+	void incrementScore()
+	{
+		score++;
+	}
 private:
 	Option option;
+	int score;
 };
 
 #endif

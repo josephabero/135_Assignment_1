@@ -8,9 +8,7 @@
 class User : public Player
 {
 public:
-	User(std::string username, Option option, int score)
-        : username(username), option(option), score(score)
-    {};
+	User();
 
     void setUsername(std::string username);
     std::string getUsername() const;

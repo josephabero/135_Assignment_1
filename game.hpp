@@ -9,19 +9,19 @@
 class Game
 {
 public:
-	Game();
+	Game(Player & player1, Player & player2);
 
 	void displayScore();
 	void gameStart();
 	void gameEnd();
 	void displayOptions();
-	void runGame();
+	void runGame(Player & player1, Player & player2);
 	Winner evaluateUserWin();
 
 private:
 	bool activeGame;
-	Player *humanPlayer;
-	Player *compPlayer;
+	Player & humanPlayer;
+	Player & compPlayer;
 };
 
 #endif

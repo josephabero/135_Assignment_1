@@ -1,15 +1,23 @@
 #include <iostream>
-// #include "computer.cpp"
-// #include "user.hpp"
+ #include "computer.hpp"
+ #include "user.hpp"
 #include "game.hpp"
-  
-using namespace std; 
 
-int main() 
-{ 
-    Game *newGame = new Game();
+using namespace std;
 
-    newGame->runGame();
+int main()
+{
+    string nameInput;
+    User humanPlayer;
+    Computer compPlayer;
+    Game newGame(humanPlayer, compPlayer);
+
+    cout << "Enter your name: ";
+    cin >> nameInput;
+    humanPlayer.setUsername(nameInput);
+
+    cout << "Hello " << humanPlayer.getUsername() << "!" << endl;
+    newGame.runGame(humanPlayer, compPlayer);
 
     return 0;
-} 
+}

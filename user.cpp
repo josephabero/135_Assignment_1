@@ -27,6 +27,10 @@ void User::incrementScore()
 {
 	score++;
 }
+void User::generateOption()
+{
+  break;
+}
 
 void User::setOption(Option option)
 {

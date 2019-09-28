@@ -2,25 +2,19 @@
 #include "game.hpp"
 using namespace std;
 
-Game::Game()
+Game::Game(Player & player1, Player & player2) : humanPlayer(player1), compPlayer(player2)
 {
-    humanPlayer = new User("Player1", Option::ROCK, 0);
-    compPlayer = new Computer();
     activeGame = false;
 }
 
-void Game::runGame()
+void Game::runGame(Player & player1, Player & player2)
 {
     // Step 1: Start Game
     gameStart();
 
-    string nameInput;
-    int round_count = 0;
-    cout << "Enter your name: ";
-    cin >> nameInput;
-    humanPlayer->setUsername(nameInput);
 
-    cout << "Hello " << humanPlayer->getUsername() << "!" << endl;
+    int round_count = 0;
+
 
     // Step 2: Display Initial Score
     displayScore();
@@ -37,9 +31,9 @@ void Game::runGame()
         cout << "----------------------------------" << endl;
         displayOptions();
 
-        compPlayer->generateOption();
+        compPlayer.generateOption();
 
-        cout << "Computer chose " << compPlayer->getOption() << endl;
+        cout << "Computer chose " << compPlayer.getOption() << endl;
 
         int winner = evaluateUserWin();
         switch(winner)
@@ -49,11 +43,11 @@ void Game::runGame()
                 break;
             case 1:
                 cout << "YOU Won!" << endl;
-                humanPlayer->incrementScore();
+                humanPlayer.incrementScore();
                 break;
             case 2:
                 cout << "COMPUTER Won" << endl;
-                compPlayer->incrementScore();
+                compPlayer.incrementScore();
                 break;
         }
 
@@ -124,7 +118,7 @@ void Game::displayOptions()
             }
         } while(!validInput);
 
-        humanPlayer->setOption(static_cast<Option>(userInput));
+        humanPlayer.setOption(static_cast<Option>(userInput));
     }
 }
 
@@ -132,11 +126,11 @@ int Game::evaluateUserWin()
 {
     // 0 = tie, 1 = user win, 2 = comp win
     int winner = 0;
-    Option compOption = compPlayer->getOption();
+    Option compOption = compPlayer.getOption();
 
     if(activeGame)
     {
-        if(humanPlayer->getOption() == compOption)
+        if(humanPlayer.getOption() == compOption)
         {
           winner  = 0;
         }

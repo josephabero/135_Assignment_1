@@ -9,6 +9,10 @@ class Player
   public:
   virtual void setOption(Option option) = 0;
   virtual Option getOption() = 0;
+  virtual void generateOption() = 0;
+  virtual int getScore()  const  = 0;
+  virtual void setScore(int score) = 0;
+  virtual void incrementScore() = 0;
 };
 
 #endif
