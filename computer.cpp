@@ -2,10 +2,10 @@
 #include "player.hpp"
 #include "option.hpp"
 
-class Computer: public Player
+class Computer: public PlayerFactory
 {
 public:
-	Computer() : Player("Computer", Option::ROCK, 0) 
+	Computer() : PlayerFactory("Computer", Option::ROCK, 0) 
 	{}
 
 	void setOption(Option option) { this->option = option; };

@@ -4,12 +4,12 @@
 #include "option.hpp"
 #include "player.hpp"
 
-class User : public Player
+class User : public PlayerFactory
 {
 public:
-    User(string username, Option option, int score) : Player(username, option, score)
+    User(string username, Option option, int score) : PlayerFactory(username, option, score)
     {}
-    
+
     void setOption(Option option);
     Option getOption();
 };

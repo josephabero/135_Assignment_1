@@ -4,10 +4,10 @@
 #include "option.hpp"
 #include <string>
 
-class Player
+class PlayerFactory
 {
 public:
-	Player(std::string username, Option option, int score) 
+	PlayerFactory(std::string username, Option option, int score) 
         : username(username), option(option), score(score)
     {};
 

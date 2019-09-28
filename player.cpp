@@ -3,27 +3,27 @@
 #include "player.hpp"
 using namespace std;
 
-void Player::setUsername(string username)
+void PlayerFactory::setUsername(string username)
 {
     this->username = username;
 }
 
-string Player::getUsername() const
+string PlayerFactory::getUsername() const
 {
     return username;
 }
 
-int Player::getScore()   const 
+int PlayerFactory::getScore()   const 
 {
  	return score;
 }
 
-void Player::setScore(int score)
+void PlayerFactory::setScore(int score)
 {
 	this->score = score;
 }
 
-void Player::incrementScore()
+void PlayerFactory::incrementScore()
 {
 	score++;
 }

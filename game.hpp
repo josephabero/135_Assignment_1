@@ -19,7 +19,7 @@ public:
 
 private:
 	bool activeGame;
-	Player *humanPlayer;
+	PlayerFactory *humanPlayer;
 	Computer *compPlayer;
 };
 
