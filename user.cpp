@@ -3,6 +3,10 @@
 #include "user.hpp"
 using namespace std;
 
+User::User()
+{
+
+}
 void User::setUsername(string username)
 {
     this->username = username;

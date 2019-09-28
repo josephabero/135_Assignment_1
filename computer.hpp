@@ -10,7 +10,7 @@ class Computer: public Player
 {
 public:
 
-	Computer();
+	Computer(){};
 
 	void setOption(Option option)
 	{

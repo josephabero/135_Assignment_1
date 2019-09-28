@@ -14,7 +14,8 @@ void Game::runGame(Player & player1, Player & player2)
 
 
     int round_count = 0;
-
+    player1.setScore(0);
+    player2.setScore(0);
 
     // Step 2: Display Initial Score
     displayScore();

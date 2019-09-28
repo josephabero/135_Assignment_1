@@ -11,6 +11,7 @@ int main()
     string nameInput;
     User humanPlayer;
     Computer compPlayer;
+
     Game newGame(humanPlayer, compPlayer);
 
     cout << "Enter your name: ";
