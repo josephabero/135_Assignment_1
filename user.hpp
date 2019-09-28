@@ -10,7 +10,7 @@ class User : public Player
 public:
 
 		User();
-
+		
     void setUsername(std::string username);
     std::string getUsername() const;
     void setOption(Option option);

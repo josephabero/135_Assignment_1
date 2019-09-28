@@ -68,7 +68,7 @@ void Game::displayScore()
         cout << endl
             << "SCORE"                                  << endl
             << "----------------------"                 << endl
-            << "YOYO" << ": " << humanPlayer.getScore()  << endl
+            << humanPlayer.getUsername() << ": " << humanPlayer.getScore()  << endl
             << "Computer: " << compPlayer.getScore()   << endl
             << "----------------------"                 << endl;
     }
