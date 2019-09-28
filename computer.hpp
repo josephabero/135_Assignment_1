@@ -41,8 +41,10 @@ public:
 	{
 		score++;
 	}
+
 	void setUsername(std::string username){}
 	std::string getUsername() const {}
+	
 private:
 	Option option;
 	int score;

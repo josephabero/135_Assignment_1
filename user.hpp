@@ -8,14 +8,14 @@
 class User : public Player
 {
 public:
-
-		User();
+    
+    User();
 		
     void setUsername(std::string username);
     std::string getUsername() const;
     void setOption(Option option);
     Option getOption();
-		void generateOption();
+	void generateOption();
     int getScore()  const;
     void setScore(int score);
     void incrementScore();
