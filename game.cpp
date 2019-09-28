@@ -29,24 +29,26 @@ void Game::runGame(Player & player1, Player & player2)
     // -- Repeat Steps 3-6 until Score threshold is met --
     do
     {
-        cout << "----------------------------------" << endl;
+        cout << "----------------------------------" << endl
+            << "ROUND " << round_count + 1 << endl
+            << "----------------------------------" << endl;
         displayOptions();
 
         compPlayer.generateOption();
 
         cout << "Computer chose " << compPlayer.getOption() << endl;
 
-        int winner = evaluateUserWin(player1, player2);
+        Winner winner = evaluateUserWin(player1, player2);
         switch(winner)
         {
-            case 0:
+            case Winner::TIE:
                 cout << "It was a TIE!" << endl;
                 break;
-            case 1:
+            case Winner::YOU:
                 cout << "YOU Won!" << endl;
                 humanPlayer.incrementScore();
                 break;
-            case 2:
+            case Winner::COMPUTER:
                 cout << "COMPUTER Won" << endl;
                 compPlayer.incrementScore();
                 break;
@@ -123,32 +125,35 @@ void Game::displayOptions()
     }
 }
 
-int Game::evaluateUserWin(Player & player1, Player & player2)
+Winner Game::evaluateUserWin(Player & player1, Player & player2)
 {
     // 0 = tie, 1 = user win, 2 = comp win
-    int winner = 0;
+    Winner winner;
     Option compOption = compPlayer.getOption();
 
     if(activeGame)
     {
         if(humanPlayer.getOption() == compOption)
         {
-          winner  = 0;
+          winner  = Winner::TIE;
         }
-        switch(humanPlayer.getOption())
+        else
         {
-            case (Option::ROCK):
-                if(compOption == Option::PAPER)         winner = 2;
-                else                                    winner = 1;
-                break;
-            case (Option::PAPER):
-                if     (compOption == Option::ROCK)     winner = 1;
-                else                                    winner = 2;
-                break;
-            case (Option::SCISSORS):
-                if     (compOption == Option::ROCK)     winner = 2;
-                else                                    winner = 1;
-                break;
+            switch(humanPlayer.getOption())
+            {
+                case (Option::ROCK):
+                    if(compOption == Option::PAPER)         winner = Winner::COMPUTER;
+                    else                                    winner = Winner::YOU;
+                    break;
+                case (Option::PAPER):
+                    if     (compOption == Option::ROCK)     winner = Winner::YOU;
+                    else                                    winner = Winner::COMPUTER;
+                    break;
+                case (Option::SCISSORS):
+                    if     (compOption == Option::ROCK)     winner = Winner::COMPUTER;
+                    else                                    winner = Winner::YOU;
+                    break;
+            }
         }
     }
 

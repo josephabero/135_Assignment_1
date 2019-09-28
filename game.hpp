@@ -16,7 +16,7 @@ public:
 	void gameEnd();
 	void displayOptions();
 	void runGame(Player & player1, Player & player2);
-	int evaluateUserWin(Player & player1, Player & player2);
+	Winner evaluateUserWin(Player & player1, Player & player2);
 
 private:
 	bool activeGame;
