@@ -8,7 +8,8 @@
 class User : public Player
 {
 public:
-	User();
+
+		User();
 
     void setUsername(std::string username);
     std::string getUsername() const;

@@ -1,7 +1,7 @@
 #ifndef	GAME_HPP
 #define	GAME_HPP
 
-
+#include "player.hpp"
 #include "user.hpp"
 #include "computer.hpp"
 #include "winner.hpp"
@@ -16,7 +16,7 @@ public:
 	void gameEnd();
 	void displayOptions();
 	void runGame(Player & player1, Player & player2);
-	Winner evaluateUserWin(Player & player1, Player & player2);
+	int evaluateUserWin(Player & player1, Player & player2);
 
 private:
 	bool activeGame;

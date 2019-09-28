@@ -35,7 +35,7 @@ void Game::runGame(Player & player1, Player & player2)
 
         cout << "Computer chose " << compPlayer.getOption() << endl;
 
-        int winner = evaluateUserWin(Player & player1, Player & player2);
+        int winner = evaluateUserWin(player1, player2);
         switch(winner)
         {
             case 0:
@@ -67,7 +67,7 @@ void Game::displayScore()
         cout << endl
             << "SCORE"                                  << endl
             << "----------------------"                 << endl
-            << humanPlayer->getUsername() << ": " << humanPlayer.getScore()  << endl
+            << "YOYO" << ": " << humanPlayer.getScore()  << endl
             << "Computer: " << compPlayer.getScore()   << endl
             << "----------------------"                 << endl;
     }

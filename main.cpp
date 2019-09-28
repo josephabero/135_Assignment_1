@@ -2,6 +2,7 @@
  #include "computer.hpp"
  #include "user.hpp"
 #include "game.hpp"
+#include "player.hpp"
 
 using namespace std;
 
