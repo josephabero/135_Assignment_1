@@ -5,7 +5,8 @@ using namespace std;
 
 User::User()
 {
-
+    username = "Player";
+    option = Option::ROCK;
 }
 void User::setUsername(string username)
 {
@@ -15,25 +16,6 @@ void User::setUsername(string username)
 string User::getUsername() const
 {
     return username;
-}
-
-int User::getScore()   const
-{
- 	return score;
-}
-
-void User::setScore(int score)
-{
-	this->score = score;
-}
-
-void User::incrementScore()
-{
-	score++;
-}
-void User::generateOption()
-{
-    int i = 0;
 }
 
 void User::setOption(Option option)

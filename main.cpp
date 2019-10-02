@@ -1,8 +1,9 @@
 #include <iostream>
- #include "computer.hpp"
- #include "user.hpp"
+#include "computer.hpp"
+#include "user.hpp"
+#include "DumbComputer.hpp"
+#include "SmartComputer.hpp"
 #include "game.hpp"
-#include "player.hpp"
 
 using namespace std;
 
@@ -10,7 +11,7 @@ int main()
 {
     string nameInput;
     User humanPlayer;
-    Computer compPlayer;
+    Computer *compPlayer =  new DumbComputer;
 
     Game newGame(humanPlayer, compPlayer);
 
@@ -19,7 +20,7 @@ int main()
     humanPlayer.setUsername(nameInput);
 
     cout << "Hello " << humanPlayer.getUsername() << "!" << endl;
-    newGame.runGame(humanPlayer, compPlayer);
+    newGame.runGame();
 
     return 0;
 }

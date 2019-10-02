@@ -2,20 +2,22 @@
 #include "game.hpp"
 using namespace std;
 
-Game::Game(Player & player1, Player & player2) : humanPlayer(player1), compPlayer(player2)
+Game::Game(User player1, Computer & player2) : humanPlayer(player1), compPlayer(player2)
 {
     activeGame = false;
+    humanScore.setScore(0);
+    computerScore.setScore(0);
 }
 
-void Game::runGame(Player & player1, Player & player2)
+void Game::runGame()
 {
     // Step 1: Start Game
     gameStart();
 
 
     int round_count = 0;
-    player1.setScore(0);
-    player2.setScore(0);
+    humanScore.setScore(0);
+    computerScore.setScore(0);
 
     // Step 2: Display Initial Score
     displayScore();
@@ -38,7 +40,7 @@ void Game::runGame(Player & player1, Player & player2)
 
         cout << "Computer chose " << compPlayer.getOption() << endl;
 
-        Winner winner = evaluateUserWin(player1, player2);
+        Winner winner = evaluateUserWin();
         switch(winner)
         {
             case Winner::TIE:
@@ -46,11 +48,11 @@ void Game::runGame(Player & player1, Player & player2)
                 break;
             case Winner::YOU:
                 cout << "YOU Won!" << endl;
-                humanPlayer.incrementScore();
+                humanScore.incrementScore();
                 break;
             case Winner::COMPUTER:
                 cout << "COMPUTER Won" << endl;
-                compPlayer.incrementScore();
+                computerScore.incrementScore();
                 break;
         }
 
@@ -70,8 +72,8 @@ void Game::displayScore()
         cout << endl
             << "SCORE"                                  << endl
             << "----------------------"                 << endl
-            << humanPlayer.getUsername() << ": " << humanPlayer.getScore()  << endl
-            << "Computer: " << compPlayer.getScore()   << endl
+            << humanPlayer.getUsername() << ": " << humanScore.getScore()  << endl
+            << "Computer: " << computerScore.getScore()   << endl
             << "----------------------"                 << endl;
     }
 }
@@ -125,7 +127,7 @@ void Game::displayOptions()
     }
 }
 
-Winner Game::evaluateUserWin(Player & player1, Player & player2)
+Winner Game::evaluateUserWin()
 {
     // 0 = tie, 1 = user win, 2 = comp win
     Winner winner;
