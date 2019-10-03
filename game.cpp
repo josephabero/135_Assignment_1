@@ -2,8 +2,9 @@
 #include "game.hpp"
 using namespace std;
 
-Game::Game(User player1, Computer & player2) : humanPlayer(player1), compPlayer(player2)
+Game::Game(Computer * player2, User player1) : compPlayer(player2)
 {
+    humanPlayer = player1;
     activeGame = false;
     humanScore.setScore(0);
     computerScore.setScore(0);
@@ -36,9 +37,9 @@ void Game::runGame()
             << "----------------------------------" << endl;
         displayOptions();
 
-        compPlayer.generateOption();
+        compPlayer->generateOption();
 
-        cout << "Computer chose " << compPlayer.getOption() << endl;
+        cout << "Computer chose " << compPlayer->getOption() << endl;
 
         Winner winner = evaluateUserWin();
         switch(winner)
@@ -131,7 +132,7 @@ Winner Game::evaluateUserWin()
 {
     // 0 = tie, 1 = user win, 2 = comp win
     Winner winner;
-    Option compOption = compPlayer.getOption();
+    Option compOption = compPlayer->getOption();
 
     if(activeGame)
     {

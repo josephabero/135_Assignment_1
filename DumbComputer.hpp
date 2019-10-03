@@ -6,6 +6,7 @@
 class DumbComputer : public Computer
 {
     public:
+    DumbComputer();
     void setOption(Option option);
 	void generateOption();
     Option getOption();

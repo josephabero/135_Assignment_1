@@ -6,6 +6,7 @@
 class SmartComputer : public Computer
 {
     public:
+    SmartComputer();
     void setOption(Option option);
 	void generateOption();
     Option getOption();

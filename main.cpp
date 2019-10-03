@@ -13,7 +13,7 @@ int main()
     User humanPlayer;
     Computer *compPlayer =  new DumbComputer;
 
-    Game newGame(humanPlayer, compPlayer);
+    Game newGame(compPlayer, humanPlayer);
 
     cout << "Enter your name: ";
     cin >> nameInput;
