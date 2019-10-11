@@ -8,7 +8,7 @@ class DumbComputer : public Computer
     public:
     DumbComputer();
     void setOption(Option option);
-	void generateOption();
+	void generateOption(Option userChoice);
     Option getOption();
     private:
     Option option;

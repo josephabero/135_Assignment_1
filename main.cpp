@@ -12,7 +12,7 @@ int main()
 {
     string nameInput;
     User *humanPlayer;
-    Computer *compPlayer =  new DumbComputer;
+    Computer *compPlayer =  new SmartComputer;
 
     Game newGame(compPlayer, humanPlayer);
 

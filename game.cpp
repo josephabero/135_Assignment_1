@@ -37,7 +37,7 @@ void Game::runGame()
             << "----------------------------------" << endl;
         displayOptions();
 
-        compPlayer->generateOption();
+        compPlayer->generateOption(humanPlayer->getOption());
 
         cout << "Computer chose " << compPlayer->getOption() << endl;
 
