@@ -9,6 +9,7 @@ using namespace std;
 class Computer
 {
 public:
+	
 	virtual void setOption(Option option) = 0;
 	virtual void generateOption() = 0;
 	virtual Option getOption()  = 0;

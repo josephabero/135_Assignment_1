@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include "computer.hpp"
 #include "user.hpp"
 #include "DumbComputer.hpp"
@@ -11,9 +12,9 @@ int main()
 {
     string nameInput;
     User humanPlayer;
-    Computer *compPlayer =  new DumbComputer;
-
-    Game newGame(compPlayer, humanPlayer);
+   Computer *compPlayer =  new DumbComputer;
+  // std::unique_ptr<Computer> compPlayer(new DumbComputer);
+    Game newGame(*compPlayer, humanPlayer);
 
     cout << "Enter your name: ";
     cin >> nameInput;
@@ -21,6 +22,6 @@ int main()
 
     cout << "Hello " << humanPlayer.getUsername() << "!" << endl;
     newGame.runGame();
-
+    delete compPlayer;
     return 0;
 }
