@@ -2,7 +2,7 @@
 #include "game.hpp"
 using namespace std;
 
-Game::Game(Computer * player2, User player1) : compPlayer(player2)
+Game::Game(Computer * player2, User * player1) : compPlayer(player2)
 {
     humanPlayer = player1;
     activeGame = false;
@@ -73,7 +73,7 @@ void Game::displayScore()
         cout << endl
             << "SCORE"                                  << endl
             << "----------------------"                 << endl
-            << humanPlayer.getUsername() << ": " << humanScore.getScore()  << endl
+            << humanPlayer->getUsername() << ": " << humanScore.getScore()  << endl
             << "Computer: " << computerScore.getScore()   << endl
             << "----------------------"                 << endl;
     }
@@ -124,7 +124,7 @@ void Game::displayOptions()
             }
         } while(!validInput);
 
-        humanPlayer.setOption(static_cast<Option>(userInput));
+        humanPlayer->setOption(static_cast<Option>(userInput));
     }
 }
 
@@ -136,13 +136,13 @@ Winner Game::evaluateUserWin()
 
     if(activeGame)
     {
-        if(humanPlayer.getOption() == compOption)
+        if(humanPlayer->getOption() == compOption)
         {
           winner  = Winner::TIE;
         }
         else
         {
-            switch(humanPlayer.getOption())
+            switch(humanPlayer->getOption())
             {
                 case (Option::ROCK):
                     if(compOption == Option::PAPER)         winner = Winner::COMPUTER;

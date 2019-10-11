@@ -9,7 +9,7 @@ class Game
 {
 public:
 
-	Game(Computer * player2, User player1);
+	Game(Computer * player2, User * player1);
 	void displayScore();
 	void gameStart();
 	void gameEnd();
@@ -20,7 +20,7 @@ public:
 private:
 	bool activeGame;
 	Computer *compPlayer;
-	User humanPlayer;
+	User *humanPlayer;
 	Score humanScore;
 	Score computerScore;
 };

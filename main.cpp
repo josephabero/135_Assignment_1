@@ -10,16 +10,16 @@ using namespace std;
 int main()
 {
     string nameInput;
-    User humanPlayer;
+    User *humanPlayer;
     Computer *compPlayer =  new DumbComputer;
 
     Game newGame(compPlayer, humanPlayer);
 
     cout << "Enter your name: ";
     cin >> nameInput;
-    humanPlayer.setUsername(nameInput);
+    humanPlayer->setUsername(nameInput);
 
-    cout << "Hello " << humanPlayer.getUsername() << "!" << endl;
+    cout << "Hello " << humanPlayer->getUsername() << "!" << endl;
     newGame.runGame();
 
     return 0;
