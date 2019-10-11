@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include "computer.hpp"
 #include "user.hpp"
 #include "DumbComputer.hpp"
@@ -21,6 +22,6 @@ int main()
 
     cout << "Hello " << humanPlayer->getUsername() << "!" << endl;
     newGame.runGame();
-
+    delete compPlayer;
     return 0;
 }

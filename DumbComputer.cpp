@@ -2,16 +2,16 @@
 
 DumbComputer::DumbComputer()
 {
-
+    option = Option::PAPER;
 }
-void DumbComputer::setOption(Option Option)
+void DumbComputer::setOption(Option option)
 {
     this->option = option;
 }
 
 void DumbComputer::generateOption()
 {
-    setOption(static_cast<Option>(rand()%3));
+  setOption(static_cast<Option>(rand()%3));
 }
 
 Option DumbComputer::getOption()
