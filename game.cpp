@@ -36,11 +36,8 @@ void Game::runGame()
             << "ROUND " << round_count + 1 << endl
             << "----------------------------------" << endl;
         displayOptions();
-
         compPlayer->generateOption();
-
         cout << "Computer chose " << compPlayer->getOption() << endl;
-
         Winner winner = evaluateUserWin();
         switch(winner)
         {
