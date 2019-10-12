@@ -25,31 +25,31 @@ void SmartComputer::generateOption(Option userChoice)
 	// 4. Update Frequency table
 	// 5. Return
 
-	// updateRecentOptions(userChoice);
+
+	// 1. Store Last User Choice
 	cout << "GEN OPTION DEBUG" 
 		<< endl << "-------------------" << endl;
 	cout << "Last User    : " << userChoice << endl;
 	cout << "Last Computer: " << option << endl;
-	recent_options += optionString(userChoice); // store user's last round choice
-
+	// recent_options += optionString(userChoice); // store user's last round choice
+	storeRecentChoice(userChoice);
 	// Stores UCUCU
 	cout << "Storing: " << recent_options << endl;
-	recorded_options[recent_options] += 1;
+	storeSequence(recent_options);
 
-	// Stores computer's last round
-	recent_options += optionString(option);		// store computer's last round choice
-	
+	// Stores Computer's Last Choice
+	storeRecentChoice(option);
 
 
 	// recent_options.erase(0, 1);
 	// cout << "Before LUC: " << recent_options << endl;
 
-	if(recent_options.size() >= num_of_prev_options)
-	{
-		// recent_options.erase(0, 1);
-		// cout << "After First char: " << recent_options << endl;
-		recent_options.erase(0, recent_options.size() - num_of_prev_options + 1); 
-	}
+	// Reduces recent_options to size of n
+	updateRecentOptions();
+	// if(recent_options.size() >= num_of_prev_options)
+	// {
+	// 	recent_options.erase(0, recent_options.size() - num_of_prev_options + 1); 
+	// }
 
 	// cout << "After LUC: " << recent_options << endl;
 	// recent_options.erase(0, 1);
@@ -58,7 +58,8 @@ void SmartComputer::generateOption(Option userChoice)
 	string test = "RPS";
 	string highestFreq = recent_options + test[0];
 
-	// iterate through each choice and assess highest frequency
+	// 
+	// Iterate through each potential choice ('R', 'P', 'S') and assess highest frequency
 	for(int i = 0; i < 3; i++)
 	{
 		cout << recent_options + test[i] << ": " << recorded_options[recent_options + test[i]] << endl;
@@ -69,32 +70,21 @@ void SmartComputer::generateOption(Option userChoice)
 
 
 	cout << "Highest Freq: " << highestFreq << endl;
-	// recorded_options[highestFreq] += 1;
-	// cout << recorded_options[highestFreq] << endl;
 
-	Option tempOpt;
-
-
+	Option compChoice;
 	switch(highestFreq.back())
 	{
-		case 'R':	tempOpt = Option::PAPER;	break;
-		case 'P':	tempOpt = Option::SCISSORS;	break;
-		case 'S':	tempOpt = Option::ROCK;		break;
-		default:	tempOpt = Option::ROCK;		break;
+		case 'R':	compChoice = Option::PAPER;		break;
+		case 'P':	compChoice = Option::SCISSORS;	break;
+		case 'S':	compChoice = Option::ROCK;		break;
+		default:	compChoice = Option::ROCK;		break;
 	}
 
 
-	// updateRecentOptions(tempOpt);
-	cout << "Computer choosing: " << tempOpt << endl << endl;
-	// cout << "End Gen: " << recent_options << endl;
-	setOption(tempOpt);
+	cout << "Computer choosing: " << compChoice << endl << endl;
+	setOption(compChoice);
 
-	// cout << endl << endl;
-	// for(auto elem : recorded_options)
-	// {
-	//    std::cout << elem.first << ": " << elem.second << "\n";
-	// }
-	// cout << endl << endl;
+	printRecordedOptions();
 }
 
 Option  SmartComputer::getOption()
@@ -102,15 +92,32 @@ Option  SmartComputer::getOption()
     return option;
 }
 
-void SmartComputer::updateRecentOptions(Option inputOption)
+void SmartComputer::updateRecentOptions()
 {
 	// Reduces to last 4 choices
-	cout << "Updating: " << recent_options << endl;
 	if(recent_options.size() >= num_of_prev_options)
 	{
-		recent_options.erase(0, recent_options.size() - num_of_prev_options + 2); 
+		recent_options.erase(0, recent_options.size() - num_of_prev_options + 1); 
 	}
 
-	recent_options += optionString(inputOption);
-	cout << "recent_options: " << recent_options << endl;
+}
+
+void SmartComputer::storeRecentChoice(Option option)
+{
+	recent_options += optionString(option);
+}
+
+void SmartComputer::storeSequence(string sequence)
+{
+	recorded_options[sequence] += 1;
+}
+
+void SmartComputer::printRecordedOptions()
+{
+	cout << endl << endl;
+	for(auto elem : recorded_options)
+	{
+	   std::cout << elem.first << ": " << elem.second << "\n";
+	}
+	cout << endl << endl;
 }

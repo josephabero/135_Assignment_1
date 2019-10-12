@@ -18,8 +18,11 @@ public:
 
 private:
 	// Internal Functions
-    void updateRecentOptions(Option inputOption);
-    void letterToOption(char choice);
+    void updateRecentOptions();
+    void storeRecentChoice(Option option);
+
+    void storeSequence(string sequence);
+    void printRecordedOptions();
 
     Option option;
     int num_of_prev_options;
