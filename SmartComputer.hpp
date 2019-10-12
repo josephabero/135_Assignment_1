@@ -23,6 +23,8 @@ private:
 
     void storeSequence(string sequence);
     void printRecordedOptions();
+    void printRecordsToFile();
+    map<std::string, int> readRecordsFromFile();
 
     Option option;
     int num_of_prev_options;

@@ -1,15 +1,16 @@
 #include "SmartComputer.hpp"
 #include <map>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 SmartComputer::SmartComputer()
 {
 	option = Option::ROCK;
 	num_of_prev_options = 5;
-	recorded_options = {
-		{"RRRRR", 0}
-	};
+	recorded_options = readRecordsFromFile();
 	recent_options = "";
+
 }
 void SmartComputer::setOption(Option option)
 {
@@ -84,7 +85,7 @@ void SmartComputer::generateOption(Option userChoice)
 	cout << "Computer choosing: " << compChoice << endl << endl;
 	setOption(compChoice);
 
-	printRecordedOptions();
+	printRecordsToFile();
 }
 
 Option  SmartComputer::getOption()
@@ -120,4 +121,51 @@ void SmartComputer::printRecordedOptions()
 	   std::cout << elem.first << ": " << elem.second << "\n";
 	}
 	cout << endl << endl;
+}
+
+void SmartComputer::printRecordsToFile()
+{
+	string filename = "SmartChooserRecords.csv";
+
+	ofstream file;
+	// open file and delete contents if file exists
+	file.open(filename, ios::out | ios::trunc);	
+
+	for(auto elem : recorded_options)
+	{
+	   file << elem.first << ":" << elem.second << "\n";
+	}
+	file.close();
+}
+
+map<string, int> SmartComputer::readRecordsFromFile()
+{
+	map<std::string, int> records;
+
+	string filename = "SmartChooserRecords.csv";
+
+	ifstream file;
+	file.open(filename, ios::in);
+	if(file.fail())
+	{
+		records = {
+			{"RRRRR", 0}
+		};
+	}
+	else
+	{
+		string line;
+		string key;
+		string val;
+		while(getline(file, line, '\n'))
+		{
+			stringstream ss(line);
+			getline(ss, key, ':');
+			getline(ss, val, '\n');
+
+			records[key] = stoi(val);
+		}
+		file.close();
+	}
+	return records;
 }
