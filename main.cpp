@@ -11,8 +11,8 @@ using namespace std;
 int main()
 {
     string nameInput;
-    User *humanPlayer;
-    Computer *compPlayer =  new SmartComputer;
+    User *humanPlayer = new User();
+    Computer *compPlayer =  new SmartComputer();
 
     Game newGame(compPlayer, humanPlayer);
 

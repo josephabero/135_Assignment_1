@@ -35,9 +35,12 @@ void Game::runGame()
         cout << "----------------------------------" << endl
             << "ROUND " << round_count + 1 << endl
             << "----------------------------------" << endl;
+
+        // Save last user choice
+        compPlayer->generateOption(humanPlayer->getOption());
         displayOptions();
 
-        compPlayer->generateOption(humanPlayer->getOption());
+        
 
         cout << "Computer chose " << compPlayer->getOption() << endl;
 
