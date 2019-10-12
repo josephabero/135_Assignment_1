@@ -40,10 +40,7 @@ void Game::runGame()
         compPlayer->generateOption(humanPlayer->getOption());
         displayOptions();
 
-        
-
         cout << "Computer chose " << compPlayer->getOption() << endl;
-
         Winner winner = evaluateUserWin();
         switch(winner)
         {
