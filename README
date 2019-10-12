@@ -13,6 +13,8 @@ To compile in command line, enter the src directory and run commands:
 > make
 > ./a.out
 
+> ./a.out -r       // Runs game with Random Computer Choices
+> ./a.out -m       // Runs game with ML Computer Choices
 
 UPDATED
 -------------------------------

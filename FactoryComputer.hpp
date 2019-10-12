@@ -5,17 +5,18 @@
 #include <string.h>
 #include "SmartComputer.hpp"
 
-enum class mode
+enum class Mode
 {
     Dumb,
     Smart
 };
+
 class Factory
 {
     public:
    
     Factory(){};
-    static Computer *makeComputer(mode mode);
+    static Computer *makeComputer(Mode mode);
 
 };
 
