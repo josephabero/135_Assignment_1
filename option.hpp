@@ -21,4 +21,15 @@ inline ostream& operator << (ostream& ost, const Option option)
     return ost;
 }
 
+inline string optionString(const Option option)
+{
+	switch(option)
+    {
+        case Option::ROCK:      return "R";
+        case Option::PAPER:     return "P";
+        case Option::SCISSORS:  return "S";
+        default:                return "U";
+    }
+}
+
 #endif

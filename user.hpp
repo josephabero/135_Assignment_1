@@ -1,17 +1,23 @@
-#ifndef USER_HPP
-#define USER_HPP
+#ifndef	USER_HPP
+#define	USER_HPP
 
 #include "option.hpp"
-#include "player.hpp"
+#include "Score.hpp"
+#include <string>
 
-class User : public PlayerFactory
+class User
 {
 public:
-    User(string username, Option option, int score) : PlayerFactory(username, option, score)
-    {}
-
+    
+    User();	
+    void setUsername(std::string username);
+    std::string getUsername() const;
     void setOption(Option option);
     Option getOption();
+
+private:
+	std::string username;
+    Option option;
 };
 
 #endif
