@@ -1,13 +1,11 @@
 all: main.exe
 
-# main.exe: main.o
-# 	 g++ -o main.exe main.o
 
-main.exe: main.cpp user.hpp game.hpp computer.hpp DumbComputer.hpp SmartComputer.hpp Score.hpp FactoryComputer.hpp
-	 g++ -std=c++11 main.cpp  game.cpp user.cpp DumbComputer.cpp SmartComputer.cpp Score.cpp FactoryComputer.cpp
+main.exe:
+	 g++ RPS_GUI.cpp GUI_Frame.cpp `wx-config --cxxflags --libs` -o RPS_GUI
 
 run:
-	 ./main.exe
+	 ./RPS_GUI
 
 clean:
-	 rm main.o computer.o game.o player.o user.o
+	 rm RPS_GUI
