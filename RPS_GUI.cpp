@@ -23,6 +23,12 @@
 #include "GUI_Frame.hpp"
 #include "RPS_GUI.hpp"
 
+wxBEGIN_EVENT_TABLE(GUI_Frame, wxFrame)
+    EVT_MENU(wxID_ABOUT,  GUI_Frame::OnAbout)
+    EVT_MENU(ID_NewGame,  GUI_Frame::OnNewGame)
+    EVT_MENU(wxID_EXIT,   GUI_Frame::OnExit)
+wxEND_EVENT_TABLE()
+
 IMPLEMENT_APP(RPS_GUI)
 
 bool RPS_GUI::OnInit()

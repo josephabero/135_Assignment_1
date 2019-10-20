@@ -2,6 +2,7 @@
 #define OPTION_HPP
 
 #include <iostream>
+#include "wx/wx.h"
 using namespace std;
 
 enum class Option
@@ -30,6 +31,19 @@ inline string optionString(const Option option)
         case Option::SCISSORS:  return "S";
         default:                return "U";
     }
+}
+
+wxString optionToWxString(const Option option)
+{
+    wxString result;
+    switch(option)
+    {
+        case Option::ROCK:      result = "Rock";          break;
+        case Option::PAPER:     result = "Paper";         break;
+        case Option::SCISSORS:  result = "Scissors";      break;
+        default:                result = "unspecified";   break;
+    }
+    return result;
 }
 
 #endif

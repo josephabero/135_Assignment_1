@@ -9,3 +9,12 @@ run:
 
 clean:
 	 rm RPS_GUI
+
+hello:
+	 g++ -std=c++11 wxHelloWorld.cpp `wx-config --cxxflags --libs` -o wxHello
+
+runHello:
+	 ./wxHello
+
+cleanHello:
+	 rm wxHello
