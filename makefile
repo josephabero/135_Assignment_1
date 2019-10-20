@@ -2,7 +2,7 @@ all: main.exe
 
 
 main.exe:
-	 g++ RPS_GUI.cpp GUI_Frame.cpp `wx-config --cxxflags --libs` -o RPS_GUI
+	 g++ RPS_GUI.cpp GUI_Frame.cpp ButtonPanel.cpp `wx-config --cxxflags --libs` -o RPS_GUI
 
 run:
 	 ./RPS_GUI

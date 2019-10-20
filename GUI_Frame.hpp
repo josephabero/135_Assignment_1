@@ -2,11 +2,14 @@
 #define	GUI_FRAME_HPP
 
 #include <wx/wx.h>
+#include "ButtonPanel.hpp"
 
 class GUI_Frame : public wxFrame
 {
 public:
     GUI_Frame(const wxString& title);
+
+    ~GUI_Frame();
 
 private:
 	void OnAbout(wxCommandEvent& event);
@@ -15,7 +18,7 @@ private:
 
 	wxDECLARE_EVENT_TABLE();
 
-	~GUI_Frame();
+	ButtonPanel *button_panel;
 };
 
 enum

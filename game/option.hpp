@@ -33,7 +33,7 @@ inline string optionString(const Option option)
     }
 }
 
-wxString optionToWxString(const Option option)
+inline wxString optionToWxString(const Option option)
 {
     wxString result;
     switch(option)
