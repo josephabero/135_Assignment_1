@@ -6,7 +6,10 @@ const int SIDE_MARGINS = 40;
 
 GUI_Frame::GUI_Frame(const wxString& title)
        : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(250, 150)), 
-            button_panel(new ButtonPanel(this))
+            button_panel(new ButtonPanel(this)),
+            stats_panel(new StatsPanel(this)),
+            comp_panel(new CompPanel(this)),
+            round_count_panel(new RoundCountPanel(this))
 {
     Centre();
     
@@ -19,12 +22,18 @@ GUI_Frame::GUI_Frame(const wxString& title)
     wxMenuBar *menuBar = new wxMenuBar;
     menuBar->Append(menuFile, "&File");
     SetMenuBar(menuBar);
+    
 
     // Init sizer
     wxSizer *frame_sizer = new wxBoxSizer(wxVERTICAL);
 
+    frame_sizer->Add(round_count_panel, 0, wxALIGN_CENTER, 0);
     frame_sizer->AddSpacer(20);
     frame_sizer->Add(button_panel, 0, wxALIGN_CENTER, 0);
+    frame_sizer->AddSpacer(20);
+    frame_sizer->Add(comp_panel, 0, wxALIGN_CENTER, 0);
+    frame_sizer->AddSpacer(20);
+    frame_sizer->Add(stats_panel, 0, wxALIGN_CENTER, 0);
 
     SetSizerAndFit(frame_sizer);
 

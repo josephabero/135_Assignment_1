@@ -1,5 +1,5 @@
-#ifndef BUTTONDEMO_HPP
-#define BUTTONDEMO_HPP
+#ifndef BUTTON_PANEL_HPP
+#define BUTTON_PANEL_HPP
 
 #include "wx/wx.h"
 #include "RPS_GUI.hpp"

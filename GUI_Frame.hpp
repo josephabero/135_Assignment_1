@@ -3,6 +3,9 @@
 
 #include <wx/wx.h>
 #include "ButtonPanel.hpp"
+#include "StatsPanel.hpp"
+#include "CompPanel.hpp"
+#include "RoundCount.hpp"
 
 class GUI_Frame : public wxFrame
 {
@@ -19,6 +22,9 @@ private:
 	wxDECLARE_EVENT_TABLE();
 
 	ButtonPanel *button_panel;
+	StatsPanel *stats_panel;
+	CompPanel *comp_panel;
+	RoundCountPanel *round_count_panel;
 };
 
 enum

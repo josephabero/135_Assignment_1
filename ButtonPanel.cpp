@@ -2,6 +2,18 @@
 
 void ButtonPanel::init()
 {
+    wxPanel *human_panel = new wxPanel(this, wxID_ANY);
+    wxSizer *human_sizer = new wxGridSizer(2, 0, 5);
+    wxStaticText *human_text = new wxStaticText(human_panel, wxID_ANY,
+                                                 "Human");
+    human_text->SetFont(human_text->GetFont().Larger());
+    wxFont font = human_text->GetFont();
+    font.SetWeight(wxFONTWEIGHT_BOLD);
+    human_text->SetFont(font);
+    human_sizer->Add(human_text, 0, wxALIGN_CENTER_HORIZONTAL, 0);
+    human_panel->SetSizer(human_sizer);
+
+
     wxSizer *sizer = new wxBoxSizer(wxVERTICAL);
 
     wxPanel *button_panel = new wxPanel(this, wxID_ANY);
@@ -33,13 +45,15 @@ void ButtonPanel::init()
     wxSizer *chosen_sizer = new wxGridSizer(2, 0, 5);
 
     wxStaticText *chosen_text = new wxStaticText(chosen_panel, wxID_ANY,
-                                                 "Chosen object:");
+                                                 "Human chooses:");
     button_chosen_text = new wxStaticText(chosen_panel, wxID_ANY, "");
     button_chosen_text->SetFont(button_chosen_text->GetFont().Larger());
     chosen_sizer->Add(chosen_text, 0, wxALIGN_RIGHT, 0);
     chosen_sizer->Add(button_chosen_text, 0, 0, 0);
     chosen_panel->SetSizer(chosen_sizer);
 
+    sizer->Add(human_panel, 0, wxALIGN_CENTER, 0);
+    sizer->AddSpacer(5);
     sizer->Add(button_panel, 0, wxALIGN_CENTER, 0);
     sizer->AddSpacer(20);
     sizer->Add(chosen_panel, 0, wxALIGN_CENTER, 0);
