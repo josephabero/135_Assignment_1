@@ -21,4 +21,17 @@ inline ostream& operator << (ostream& ost, const Winner winner)
     return ost;
 }
 
+inline wxString winnerToWxString(const Winner winner)
+{
+    wxString result;
+    switch(winner)
+    {
+        case Winner::TIE:      	result = "Tie";         break;
+        case Winner::YOU:     	result = "You";         break;
+        case Winner::COMPUTER:  result = "Computer";    break;
+        default:                result = "unspecified"; break;
+    }
+    return result;
+}
+
 #endif

@@ -12,7 +12,6 @@
 class ButtonPanel : public wxPanel
 {
 public:
-    int round_number = 0;
 
 	ButtonPanel(wxFrame *parent) : wxPanel(parent, wxID_ANY)
     {
@@ -29,6 +28,9 @@ private:
     wxStaticText *predicted_text;
     wxStaticText *computer_chosen_text;
     wxStaticText *winner_winner_text;
+    wxStaticText *human_wins_text;
+    wxStaticText *computer_wins_text;
+    wxStaticText *current_ties_text;
 
     DumbComputer Dcomp;
     SmartComputer Scomp;
