@@ -11,12 +11,14 @@ public:
 
 	Game();
 	Game(Computer * player2, User * player1);
+
 	void displayScore();
 	void gameStart();
 	void gameEnd();
 	void displayOptions();
 	void runGame();
 	Winner evaluateUserWin();
+	Winner evaluateWin(Option uoption, Option coption);
 
 private:
 	bool activeGame;

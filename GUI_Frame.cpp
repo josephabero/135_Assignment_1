@@ -16,10 +16,8 @@ GUI_Frame::GUI_Frame(const wxString& title)
     menuFile->Append(ID_NewGame, wxT("&New Game"), "New Game");
     menuFile->Append(wxID_EXIT, wxT("&Exit"), "Exit");
     
-    wxMenu *menuOption = new wxMenu;
     wxMenuBar *menuBar = new wxMenuBar;
     menuBar->Append(menuFile, "&File");
-    menuBar->Append(menuOption, "&Option");
     SetMenuBar(menuBar);
 
     // Init sizer
@@ -48,15 +46,14 @@ GUI_Frame::GUI_Frame(const wxString& title)
 
 void GUI_Frame::OnAbout(wxCommandEvent& event)
 {
-    wxMessageBox( "This is a wxWidgets' Hello world sample",
-                  "About Hello World", wxOK | wxICON_INFORMATION );
+    wxMessageBox( "This is a wxWidgets' Rock Paper Scissors game. The computer uses an machine learning algorithm to learn and adapt",
+                  "About RPS", wxOK | wxICON_INFORMATION );
 }
 
 void GUI_Frame::OnNewGame(wxCommandEvent& event)
 {
     cout << "Starting a new game!" << endl;
-    human.setScore(0);
-    computer.setScore(0);
+    button_panel->ZeroScore();
 }
 
 void GUI_Frame::OnExit(wxCommandEvent& event)
@@ -67,5 +64,5 @@ void GUI_Frame::OnExit(wxCommandEvent& event)
 
 GUI_Frame::~GUI_Frame()
 {
-
+   
 }

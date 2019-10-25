@@ -2,7 +2,7 @@
 
 void ButtonPanel::init()
 {
-    // int round_number = 0;
+    round_number = 1;
     // round_number_text->SetLabelText(wxString::Format(wxT("%i"),round_number + 1));
 
     wxSizer *sizer = new wxBoxSizer(wxVERTICAL);
@@ -14,7 +14,7 @@ void ButtonPanel::init()
     round_number_text = new wxStaticText(round_panel, wxID_ANY, "");
     round_number_text->SetFont(round_number_text->GetFont());
     round_sizer->Add(round_text, 0, wxALIGN_RIGHT, 0);
-    //round_sizer->Add(round_number_text, 0, 0, 0);
+    round_sizer->Add(round_number_text, 0, 0, 0);
     round_panel->SetSizer(round_sizer);
 
 
@@ -118,7 +118,7 @@ void ButtonPanel::init()
     stats_panel->SetSizer(stats_sizer);
 
 
-    sizer->Add(round_panel, 0, wxALIGN_CENTER, 0);
+    sizer->Add(round_panel, 0, wxALIGN_LEFT, 0);
     sizer->AddSpacer(20);
     sizer->Add(human_panel, 0, wxALIGN_CENTER, 0);
     sizer->AddSpacer(20);
@@ -155,16 +155,73 @@ void ButtonPanel::onScissors(wxCommandEvent& event)
 {
     updateButtonOption(Option::SCISSORS);
 }
-
+void ButtonPanel::ZeroScore()
+{
+    round_number = 1;
+    wxString round = wxString::Format(wxT("%i"),round_number);
+    round_number_text->SetLabelText(round);
+    Human.setScore(0);
+    Computer.setScore(0);
+    Tie.setScore(0);
+    wxString Zero = wxString::Format(wxT("%i"),Human.getScore());
+    human_wins_text->SetLabelText(Zero);
+    computer_wins_text->SetLabelText(Zero);
+    current_ties_text->SetLabelText(Zero);
+}
 void ButtonPanel::updateButtonOption(const Option option)
 {
-    round_number_text->SetLabelText(optionToWxString(option));
+    Winner result;
+
+    //Round Implementation
+    if(round_number > 20)
+    {
+       wxMessageBox( "Game is over!!",
+                  "GAME OVER", wxOK | wxICON_INFORMATION );
+    }
+    else
+    {
+    wxString round = wxString::Format(wxT("%i"),round_number);
+    round_number_text->SetLabelText(round);
+    round_number = round_number + 1;
+    wxString temp;
+    
+    
+    //Button
     button_chosen_text->SetLabelText(optionToWxString(option));
+    
+    //Computer 
     Scomp.generateOption(option);
     predicted_text->SetLabelText(optionToWxString(Scomp.getPredicted()));
     computer_chosen_text->SetLabelText(optionToWxString(Scomp.getOption()));
-    //winner_winner_text->SetLabelText(winnerToWxString(game.evaluateUserWin()));
-    human_wins_text->SetLabelText(optionToWxString(Scomp.getOption()));
-    computer_wins_text->SetLabelText(optionToWxString(Scomp.getOption()));
-    current_ties_text->SetLabelText(optionToWxString(Scomp.getOption()));
+
+    //Winner
+    winner_winner_text->SetLabelText(winnerToWxString(game.evaluateWin(option,Scomp.getOption())));
+    
+    //Scoring Section
+    temp = wxString::Format(wxT("%i"),Human.getScore());
+    human_wins_text->SetLabelText(temp);
+    temp = wxString::Format(wxT("%i"),Computer.getScore());
+    computer_wins_text->SetLabelText(temp);
+    temp = wxString::Format(wxT("%i"),Tie.getScore());
+    current_ties_text->SetLabelText(temp);
+    result = game.evaluateWin(option, Scomp.getOption());
+    if(result == Winner::YOU)
+    {
+        Human.incrementScore();
+        temp = wxString::Format(wxT("%i"),Human.getScore());
+        human_wins_text->SetLabelText(temp);
+    }
+    else if(result == Winner::COMPUTER)
+    {
+        Computer.incrementScore();
+        temp = wxString::Format(wxT("%i"),Computer.getScore());
+        computer_wins_text->SetLabelText(temp);
+    }
+    else
+    {
+        Tie.incrementScore();
+        temp = wxString::Format(wxT("%i"),Tie.getScore());
+        current_ties_text->SetLabelText(temp);
+    }
+    }
 }

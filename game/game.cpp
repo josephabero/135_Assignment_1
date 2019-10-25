@@ -133,7 +133,33 @@ void Game::displayOptions()
         humanPlayer->setOption(static_cast<Option>(userInput));
     }
 }
-
+Winner Game::evaluateWin(Option uoption, Option coption)
+{
+    Winner winner;
+    if(uoption == coption)
+    {
+        winner = Winner::TIE;
+    }
+    else 
+    {
+    switch(uoption)
+    {
+        case (Option::ROCK):
+        if(coption == Option::PAPER)    winner = Winner::COMPUTER;
+        else                            winner = Winner::YOU;
+        break;
+        case (Option::PAPER):
+        if(coption == Option::ROCK)     winner = Winner::YOU;
+        else                            winner = Winner::COMPUTER;
+        break;
+        case (Option::SCISSORS):
+        if(coption == Option::ROCK)     winner = Winner::COMPUTER;
+        else                            winner = Winner::YOU;
+        break;
+    }
+    }
+    return winner;
+}
 Winner Game::evaluateUserWin()
 {
     // 0 = tie, 1 = user win, 2 = comp win
