@@ -3,20 +3,51 @@
 void ButtonPanel::init()
 {
     round_number = 1;
-    // round_number_text->SetLabelText(wxString::Format(wxT("%i"),round_number + 1));
+    round_max = 20;
 
     wxSizer *sizer = new wxBoxSizer(wxVERTICAL);
 
-    wxPanel *round_panel = new wxPanel(this, wxID_ANY);
-    wxSizer *round_sizer = new wxGridSizer(2, 0, 5);;
+    wxPanel *max_round_panel = new wxPanel(this,wxID_ANY);
+    wxSizer *max_round_sizer = new wxGridSizer(2,0,5);
 
+    const char *up = "Max Round Up";
+    const char *down = "Max Round Down";
+    
+    wxString upstring = wxString::FromUTF8(up);
+    wxString downstring = wxString::FromUTF8(down);
+    
+    wxButton *up_button = new wxButton(max_round_panel, wxID_ANY, upstring );
+    wxButton *down_button = new wxButton(max_round_panel, wxID_ANY, downstring );
+    
+    up_button->Bind (wxEVT_BUTTON, &ButtonPanel::onUp,this);
+    down_button->Bind(wxEVT_BUTTON, &ButtonPanel::onDown,this);
+
+    wxStaticText *max_round_text = new wxStaticText(max_round_panel, wxID_ANY, "Max Round:");
+
+     max_round_number_text = new wxStaticText(max_round_panel, wxID_ANY, "");
+    max_round_number_text->SetFont(max_round_number_text->GetFont());
+    
+    max_round_sizer->Add(max_round_number_text,0,wxALIGN_RIGHT,0);
+    max_round_sizer->AddSpacer(5);
+    max_round_sizer->Add(up_button,0,0,0);
+    max_round_sizer->AddSpacer(5);
+    max_round_sizer->Add(down_button,0,0,0);
+    max_round_panel->SetSizer(max_round_sizer);
+
+    wxPanel *round_panel = new wxPanel(this, wxID_ANY);
+    wxSizer *round_sizer = new wxGridSizer(2, 0, 5);
+    
+    
     wxStaticText *round_text = new wxStaticText(round_panel, wxID_ANY, "Round:");
+    
+
+   
     round_number_text = new wxStaticText(round_panel, wxID_ANY, "");
     round_number_text->SetFont(round_number_text->GetFont());
     round_sizer->Add(round_text, 0, wxALIGN_RIGHT, 0);
     round_sizer->Add(round_number_text, 0, 0, 0);
+    round_sizer->AddSpacer(5);
     round_panel->SetSizer(round_sizer);
-
 
     wxPanel *human_panel = new wxPanel(this, wxID_ANY);
     wxSizer *human_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -117,7 +148,8 @@ void ButtonPanel::init()
     stats_sizer->Add(current_ties_text,0,0,0);
     stats_panel->SetSizer(stats_sizer);
 
-
+    sizer->Add(max_round_panel,0, wxALIGN_LEFT, 0);
+    sizer->AddSpacer(20);
     sizer->Add(round_panel, 0, wxALIGN_LEFT, 0);
     sizer->AddSpacer(20);
     sizer->Add(human_panel, 0, wxALIGN_CENTER, 0);
@@ -140,7 +172,38 @@ void ButtonPanel::init()
 
     SetSizer(sizer);
 }
+void ButtonPanel::Increment_Round()
+{
+    round_max++;
+}
+void ButtonPanel::Decrement_Round()
+{
+    if(round_max == 1)
+    {
+        round_max = 1;
+    }
+    else
+    {
+        round_max --;
+    }
+   
+}
+void ButtonPanel::onUp(wxCommandEvent& event)
+{
+    //updateButtonOption(Option::ROCK);
+    Increment_Round();
+    wxString max_round = wxString::Format(wxT("%i"),round_max);
+    max_round_number_text->SetLabelText(max_round);
 
+}
+void ButtonPanel::onDown(wxCommandEvent& event)
+{
+   // updateButtonOption(Option::ROCK);
+   Decrement_Round();
+   wxString max_round = wxString::Format(wxT("%i"),round_max);
+    max_round_number_text->SetLabelText(max_round);
+
+}
 void ButtonPanel::onRock(wxCommandEvent& event)
 {
     updateButtonOption(Option::ROCK);
@@ -171,15 +234,17 @@ void ButtonPanel::ZeroScore()
 void ButtonPanel::updateButtonOption(const Option option)
 {
     Winner result;
-
+    
     //Round Implementation
-    if(round_number > 20)
+    if(round_number > round_max)
     {
-       wxMessageBox( "Game is over! Please press New Game under the file tab!",
+       wxMessageBox( "Game is over! Please press New Game under the file tab! Or increase Max Round Counter.",
                   "GAME OVER", wxOK | wxICON_INFORMATION );
     }
     else
     {
+    wxString max_round = wxString::Format(wxT("%i"),round_max);
+    max_round_number_text->SetLabelText(max_round);
     wxString round = wxString::Format(wxT("%i"),round_number);
     round_number_text->SetLabelText(round);
     round_number = round_number + 1;

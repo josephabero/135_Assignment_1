@@ -19,13 +19,18 @@ public:
     }
 
 
-
+    void onUp(wxCommandEvent& event);
+    void onDown(wxCommandEvent& event);
     void onRock(wxCommandEvent& event);
     void onPaper(wxCommandEvent& event);
     void onScissors(wxCommandEvent& event);
     void ZeroScore();
+    void Increment_Round();
+    void Decrement_Round();
+    void Get_Round();
 
 private:
+    wxStaticText *max_round_number_text;
     wxStaticText *round_number_text;
 	wxStaticText *button_chosen_text;
     wxStaticText *predicted_text;
@@ -37,6 +42,7 @@ private:
 
 
     int round_number;
+    int round_max;
     DumbComputer Dcomp;
     SmartComputer Scomp;
     Game game;

@@ -46,7 +46,7 @@ GUI_Frame::GUI_Frame(const wxString& title)
 
 void GUI_Frame::OnAbout(wxCommandEvent& event)
 {
-    wxMessageBox( "This is a wxWidgets' Rock Paper Scissors game. The computer uses an machine learning algorithm to learn and adapt",
+    wxMessageBox( "This is a wxWidgets' Rock Paper Scissors game. The computer uses an machine learning algorithm to learn and adapt. Default number of rounds is 20",
                   "About RPS", wxOK | wxICON_INFORMATION );
 }
 
