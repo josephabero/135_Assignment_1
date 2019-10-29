@@ -2,20 +2,27 @@
 #include "game.hpp"
 using namespace std;
 
-Game::Game(Player & player1, Player & player2) : humanPlayer(player1), compPlayer(player2)
+
+Game::Game()
 {
+
+}
+Game::Game(Computer * player2, User * player1) : compPlayer(player2)
+{
+    humanPlayer = player1;
     activeGame = false;
+    humanScore.setScore(0);
+    computerScore.setScore(0);
 }
 
-void Game::runGame(Player & player1, Player & player2)
+void Game::runGame()
 {
     // Step 1: Start Game
     gameStart();
 
 
     int round_count = 0;
-    player1.setScore(0);
-    player2.setScore(0);
+
 
     // Step 2: Display Initial Score
     displayScore();
@@ -32,13 +39,13 @@ void Game::runGame(Player & player1, Player & player2)
         cout << "----------------------------------" << endl
             << "ROUND " << round_count + 1 << endl
             << "----------------------------------" << endl;
+
+        // Save last user choice
+        compPlayer->generateOption(humanPlayer->getOption());
         displayOptions();
 
-        compPlayer.generateOption();
-
-        cout << "Computer chose " << compPlayer.getOption() << endl;
-
-        Winner winner = evaluateUserWin(player1, player2);
+        cout << "Computer chose " << compPlayer->getOption() << endl;
+        Winner winner = evaluateUserWin();
         switch(winner)
         {
             case Winner::TIE:
@@ -46,11 +53,11 @@ void Game::runGame(Player & player1, Player & player2)
                 break;
             case Winner::YOU:
                 cout << "YOU Won!" << endl;
-                humanPlayer.incrementScore();
+                humanScore.incrementScore();
                 break;
             case Winner::COMPUTER:
                 cout << "COMPUTER Won" << endl;
-                compPlayer.incrementScore();
+                computerScore.incrementScore();
                 break;
         }
 
@@ -70,8 +77,8 @@ void Game::displayScore()
         cout << endl
             << "SCORE"                                  << endl
             << "----------------------"                 << endl
-            << humanPlayer.getUsername() << ": " << humanPlayer.getScore()  << endl
-            << "Computer: " << compPlayer.getScore()   << endl
+            << humanPlayer->getUsername() << ": " << humanScore.getScore()  << endl
+            << "Computer: " << computerScore.getScore()   << endl
             << "----------------------"                 << endl;
     }
 }
@@ -79,6 +86,8 @@ void Game::displayScore()
 void Game::gameStart()
 {
     cout << "GAME START" << endl;
+    humanScore.setScore(0);
+    computerScore.setScore(0);
     activeGame = true;
 }
 
@@ -121,25 +130,51 @@ void Game::displayOptions()
             }
         } while(!validInput);
 
-        humanPlayer.setOption(static_cast<Option>(userInput));
+        humanPlayer->setOption(static_cast<Option>(userInput));
     }
 }
-
-Winner Game::evaluateUserWin(Player & player1, Player & player2)
+Winner Game::evaluateWin(Option uoption, Option coption)
+{
+    Winner winner;
+    if(uoption == coption)
+    {
+        winner = Winner::TIE;
+    }
+    else 
+    {
+    switch(uoption)
+    {
+        case (Option::ROCK):
+        if(coption == Option::PAPER)    winner = Winner::COMPUTER;
+        else                            winner = Winner::YOU;
+        break;
+        case (Option::PAPER):
+        if(coption == Option::ROCK)     winner = Winner::YOU;
+        else                            winner = Winner::COMPUTER;
+        break;
+        case (Option::SCISSORS):
+        if(coption == Option::ROCK)     winner = Winner::COMPUTER;
+        else                            winner = Winner::YOU;
+        break;
+    }
+    }
+    return winner;
+}
+Winner Game::evaluateUserWin()
 {
     // 0 = tie, 1 = user win, 2 = comp win
     Winner winner;
-    Option compOption = compPlayer.getOption();
+    Option compOption = compPlayer->getOption();
 
     if(activeGame)
     {
-        if(humanPlayer.getOption() == compOption)
+        if(humanPlayer->getOption() == compOption)
         {
           winner  = Winner::TIE;
         }
         else
         {
-            switch(humanPlayer.getOption())
+            switch(humanPlayer->getOption())
             {
                 case (Option::ROCK):
                     if(compOption == Option::PAPER)         winner = Winner::COMPUTER;

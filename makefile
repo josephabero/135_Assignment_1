@@ -1,13 +1,25 @@
 all: main.exe
 
-# main.exe: main.o
-# 	 g++ -o main.exe main.o
+main.exe: external.o internal.o
+	 g++ -o RPS_GUI *.o `wx-config --libs`
 
-main.exe: main.cpp user.hpp game.hpp player.hpp computer.hpp
-	 g++ -std=c++11 main.cpp  game.cpp user.cpp
+external.o:
+	g++ `wx-config --cxxflags` -c *.cpp
+
+internal.o:
+	g++ `wx-config --cxxflags` -c game/*.cpp
 
 run:
-	 ./main.exe
+	 ./RPS_GUI
 
 clean:
-	 rm main.o computer.o game.o player.o user.o
+	 rm RPS_GUI *.o
+
+hello:
+	 g++ -std=c++11 wxHelloWorld.cpp `wx-config --cxxflags --libs` -o wxHello
+
+runHello:
+	 ./wxHello
+
+cleanHello:
+	 rm wxHello
