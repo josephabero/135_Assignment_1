@@ -175,7 +175,7 @@ void ButtonPanel::updateButtonOption(const Option option)
     //Round Implementation
     if(round_number > 20)
     {
-       wxMessageBox( "Game is over!!",
+       wxMessageBox( "Game is over! Please press New Game under the file tab!",
                   "GAME OVER", wxOK | wxICON_INFORMATION );
     }
     else
